@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "project": "graphql-training",
+  "builds": [
+    {
+      "src": "/src/index.ts",
+      "use": "@now/node",
+      "config": {
+        "includeFiles": ["**/*.graphql"]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/graphql", "dest": "/src/index.ts" }
+  ]
+}

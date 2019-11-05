@@ -1,0 +1,25 @@
+type Post {
+  id: String!
+  title: String!
+}
+
+type LoggedInUser {
+  id: ID!
+  posts: [Post]!
+}
+
+input UpdateProfileInput {
+  firstName: String
+  lastName: String
+  picture: String
+  displayName: String
+}
+
+type Query {
+  getLoggedInUser: LoggedInUser
+  getPost(id: ID!): Post
+}
+
+type Mutation {
+  updateProfile(input: UpdateProfileInput!): LoggedInUser!
+}
