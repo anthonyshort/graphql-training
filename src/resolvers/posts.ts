@@ -1,19 +1,20 @@
 type GetPostArguments = {
-  id: string
-}
+  id: string;
+};
 
 export type IPost = {
-  id: string
-  title: string
+  id: string;
+  title: string;
+};
+
+async function getPost(_: any, args: GetPostArguments): Promise<IPost | null> {
+  if (args.id === "1") {
+    return {
+      id: "1",
+      title: "Hello world"
+    };
+  }
+  return null;
 }
 
-async function getPost(_: any, args: GetPostArguments): Promise<IPost> {
-  return {
-    id: args.id,
-    title: "Hello world"
-  };
-}
-
-export {
-  getPost
-}
+export { getPost };

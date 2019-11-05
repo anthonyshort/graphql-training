@@ -1,8 +1,10 @@
-import { updateProfile, LoggedInUser, getLoggedInUser } from "./user";
+import { updateProfile, getUserPosts, getLoggedInUser } from "./user";
 import { getPost } from "./posts";
 
 export default {
-  LoggedInUser,
+  LoggedInUser: {
+    posts: getUserPosts
+  },
   Mutation: {
     updateProfile
   },
