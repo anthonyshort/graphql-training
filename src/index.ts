@@ -1,8 +1,10 @@
 import { graphql, getIntrospectionQuery } from "graphql";
 import { NowRequest, NowResponse } from "@now/node";
-import cors from "micro-cors";
+import createCors from "micro-cors";
 import schema from "./schema";
 import { Context } from "./context";
+
+const cors = createCors({ allowHeaders: ["*"] });
 
 async function handler(req: NowRequest, res: NowResponse) {
   const body = req.body || {};
@@ -33,6 +35,4 @@ async function handler(req: NowRequest, res: NowResponse) {
   }
 }
 
-export default cors({ allowMethods: ["PUT", "POST"], allowHeaders: ["*"] })(
-  handler
-);
+export default cors(handler);
