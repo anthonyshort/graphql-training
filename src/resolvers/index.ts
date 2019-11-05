@@ -1,7 +1,8 @@
-import { getPosts } from "./posts";
+import { getPosts, getPost } from "./posts";
 
 export default {
   Query: {
-    getPosts
+    getPosts,
+    getPost
   }
 };
