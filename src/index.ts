@@ -1,10 +1,11 @@
-import { graphql } from "graphql";
+import { graphql, getIntrospectionQuery } from "graphql";
 import { NowRequest, NowResponse } from "@now/node";
 import schema from "./schema";
 import { Context } from "./context";
 
 async function handler(req: NowRequest, res: NowResponse) {
-  const { query, variables, operationName } = req.body;
+  const body = req.body || {};
+  const { query, variables, operationName } = body;
 
   const context: Context = {
     loggedInUser: {
@@ -14,10 +15,12 @@ async function handler(req: NowRequest, res: NowResponse) {
     }
   };
 
+  const introspectionQuery = getIntrospectionQuery();
+
   try {
     const result = await graphql(
       schema,
-      query,
+      query || introspectionQuery,
       null,
       context,
       variables,
