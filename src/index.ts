@@ -1,4 +1,4 @@
-import { graphql, getIntrospectionQuery } from "graphql";
+import { graphql } from "graphql";
 import { NowRequest, NowResponse } from "@now/node";
 import createCors from "micro-cors";
 import schema from "./schema";
@@ -18,12 +18,10 @@ async function handler(req: NowRequest, res: NowResponse) {
     }
   };
 
-  const introspectionQuery = getIntrospectionQuery();
-
   try {
     const result = await graphql(
       schema,
-      query || introspectionQuery,
+      query,
       null,
       context,
       variables,
